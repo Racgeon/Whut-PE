@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>体育题库查询</title>
+
+    <style>
+        .demo-table-expand {
+            font-size: 0;
+        }
+
+        .demo-table-expand label {
+            width: 90px;
+            color: #99a9bf;
+        }
+
+        .demo-table-expand .el-form-item {
+            margin-right: 0;
+            margin-bottom: 0;
+            width: 50%;
+        }
+    </style>
+</head>
+
+<body>
+<div id="app">
+    <h3 align="center">
+        武汉理工大学体育题库查询
+    </h3>
+    <div>
+        <el-form label-width="80px" id="form">
+            <el-form-item label="问题集">
+                <el-select v-model="problem_set" placeholder="请选择问题集">
+                    <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
+                    </el-option>
+                </el-select>
+            </el-form-item>
+
+            <el-form-item label="查询内容">
+                <el-input placeholder="请输入内容" v-model="content_query" clearable @blur="checkContent">
+                </el-input>
+            </el-form-item>
+
+
+            <el-alert title="您输入的内容长度必须大于或等于2" type="error" v-if="content_illegal===true" align="center">
+            </el-alert>
+
+            <br>
+
+            <el-form-item>
+                <el-button @click="query">查询</el-button>
+            </el-form-item>
+        </el-form>
+    </div>
+
+
+    <el-table :data="query_result" style="width: 100%">
+        <el-table-column type="expand">
+            <template slot-scope="props">
+                <el-form label-position="left" inline class="demo-table-expand">
+                    <el-form-item label="答案">
+                        <span>{{ props.row.answer }}</span>
+                    </el-form-item>
+                    <el-form-item label="题目">
+                        <span>{{ props.row.content }}</span>
+                    </el-form-item>
+                    <el-form-item label="选项A" v-if="props.row.options.length>0">
+                        <span>{{ props.row.options[0].content}}</span>
+                        <span v-if="props.row.options[0].is_right===0" style="color: red">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            {{'错误'}}
+                        </span>
+                        <span v-else style="color: #13ce66">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            {{'正确'}}
+                        </span>
+                    </el-form-item>
+                    <el-form-item label="选项B" v-if="props.row.options.length>1">
+                        <span>{{ props.row.options[1].content}}</span>
+                        <span v-if="props.row.options[1].is_right===0" style="color: red">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            {{'错误'}}
+                        </span>
+                        <span v-else style="color: #13ce66">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            {{'正确'}}
+                        </span>
+                    </el-form-item>
+                    <el-form-item label="选项C" v-if="props.row.options.length>2">
+                        <span>{{ props.row.options[2].content}}</span>
+                        <span v-if="props.row.options[2].is_right===0" style="color: red">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            {{'错误'}}
+                        </span>
+                        <span v-else style="color: #13ce66">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            {{'正确'}}
+                        </span>
+                    </el-form-item>
+                    <el-form-item label="选项D" v-if="props.row.options.length>3">
+                        <span>{{ props.row.options[3].content}}</span>
+                        <span v-if="props.row.options[3].is_right===0" style="color: red">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            {{'错误'}}
+                        </span>
+                        <span v-else style="color: #13ce66">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            {{'正确'}}
+                        </span>
+                    </el-form-item>
+                </el-form>
+            </template>
+        </el-table-column>
+        <el-table-column label="题目" prop="content">
+        </el-table-column>
+        <el-table-column label="答案" prop="answer">
+        </el-table-column>
+    </el-table>
+
+</div>
+</body>
+<script src="js/vue.js"></script>
+<script src="element-ui/lib/index.js"></script>
+<script src="js/axios-0.18.0.js"></script>
+<link rel="stylesheet" href="element-ui/lib/theme-chalk/index.css">
+<script src="js/app.js"></script>
+
+</html>
