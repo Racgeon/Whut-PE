@@ -3,7 +3,7 @@
 > 前端小白的第一个纯前端练手项目，封装了[Rosemoe](https://github.com/Rosemoe)的步道乐跑数据，并通过网页的方式展示
 
 ### 体验
-本项目已经部署到[Racgeon的体育题库查询网站](https://rkgn.xyz/physics)上，欢迎体验，项目仅由个人维护，若无法访问或出现异常敬请谅解。
+本项目已经部署到[Racgeon的体育题库查询网站](https://rkgn.xyz/pe)上，欢迎体验，项目仅由个人维护，若无法访问或出现异常敬请谅解。
 
 ### 免责声明
 本网站所提供的数据均来自于第三方API提供商[Rosemoe](https://github.com/Rosemoe)的[API网站](https://services.rosemoe.cyou/api)。这些数据并不代表本网站的观点或判断，也不应被视为投资建议或其他形式的投资建议。本网站不对这些数据的准确性和完整性承担任何责任。
